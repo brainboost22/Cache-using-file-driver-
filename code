@@ -1,0 +1,23 @@
+Route::get('/cache', function(){
+
+    Cache::put('cachekey', 'i am in the cache baby!', 10);//puting data in cache for 10 min
+  return Cache::get('cachekey');//retrieving data from cache
+
+  if(Cache::has('cachekey')){  //checking cache available or not
+
+    return Cache::get('cachekey'); // retrieving data
+  }
+
+  Cache::forget( 'cachekey' ); // forgeting the cache
+  
+  if( Cache::has( 'cachekey' ) ) {  //checking cache available or not
+    return Cache::get( 'cachekey' );  // retrieving data
+  } else {
+    return 'cachekey was forgotten, so this is just random data';
+  }
+
+});
+
+// Path of the cache file stores[when you hit the browser using '/cache' route]
+
+storage/framework/cache/77/3d.....
